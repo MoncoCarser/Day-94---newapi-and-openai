@@ -34,3 +34,7 @@ response = openai.Completion.create(model="text-davinci-002", prompt=prompt, tem
 
 #print(response)
 print(response["choices"][0]["text"].strip())
+
+#1 modify newsapi code to get desired data 
+#2 give the data to openai to summarzie
+#3 get 5 news stories printed this way
