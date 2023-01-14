@@ -17,23 +17,25 @@ result = requests.get(url)
 data = result.json()
 #print(json.dumps(data, indent = 2))
 
-for article in data["articles"]:
+"""for article in data["articles"]:
     print(article["title"])
     print()
     print(article["url"])
     print()
     print(article["content"])
     print()
+"""
+for article in data["articles"]:
+    content =  article["content"]
+    prompt = f"Summarize following in one sentence: {content}"
+    
+    response = openai.Completion.create(model="text-davinci-002", prompt=prompt, temperature=0, max_tokens=6)
 
-
-
-
-prompt = "How many car brands exist?"
-
-response = openai.Completion.create(model="text-davinci-002", prompt=prompt, temperature=0, max_tokens=6)
+    print(response["choices"][0]["text"].strip())    
+    print()
 
 #print(response)
-print(response["choices"][0]["text"].strip())
+
 
 #1 modify newsapi code to get desired data 
 #2 give the data to openai to summarzie
